@@ -37,6 +37,8 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+    volumes:
+      - /usr/src/app
     restart: unless-stopped
 networks:
   server-network:

@@ -1,15 +1,12 @@
 import { IsDefined, IsNumber, IsString } from 'class-validator';
 
-export class CreateUserDto {
+export class CreateTokenDto {
   @IsString()
   @IsDefined()
-  name: string;
+  userId: string;
 
   @IsString()
   @IsDefined()
-  email: string;
 
-  @IsString()
-  @IsDefined()
-  password: string;
+  token: string;
 }

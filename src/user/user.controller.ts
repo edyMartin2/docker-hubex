@@ -10,6 +10,7 @@ import {
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { CreateTokenDto } from './dto/create-token.dto';
 
 @Controller('user')
 export class UserController {
@@ -25,9 +26,25 @@ export class UserController {
     return this.userService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userService.findOne(+id);
+  @Get(':userName')
+  async findOne(@Param('userName') userName: string) {
+    var findOne = this.userService.findOne(userName);
+    let users = await findOne.then((res) => {
+      return res;
+    });
+    let tokenDto = {
+      userId: users[0]._id,
+      token: '',
+    };
+
+    let tokenize = this.userService.tokenize(tokenDto);
+    let tokens = await tokenize.then((res) => {
+      return res;
+    });
+    return {
+      users: users,
+      tokens: tokens,
+    };
   }
 
   @Patch(':id')
