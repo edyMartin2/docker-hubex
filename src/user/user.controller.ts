@@ -8,13 +8,16 @@ import {
   Delete,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto, ValidateUser } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CreateTokenDto } from './dto/create-token.dto';
+import axios from 'axios'
+import * as bcrypt from 'bcrypt';
+
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
@@ -32,18 +35,21 @@ export class UserController {
     let users = await findOne.then((res) => {
       return res;
     });
+
+    let forTokenise = users[0] ? `${users[0].userName}::${users[0].password}::${Date.now()}` : '';
     let tokenDto = {
-      userId: users[0]._id,
-      token: '',
+      userId: users[0] ? users[0]._id : 0,
+      token: forTokenise,
     };
 
     let tokenize = this.userService.tokenize(tokenDto);
-    let tokens = await tokenize.then((res) => {
-      return res;
-    });
+    let tokens = users[0] ? await tokenize.then((res) => { return res; }) : null;
     return {
-      users: users,
-      tokens: tokens,
+      result: {
+        user: users,
+        token: tokens !== null ? tokens : {},
+      },
+      status: tokens !== null ? 200 : 500
     };
   }
 
@@ -55,5 +61,16 @@ export class UserController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.userService.remove(+id);
+  }
+
+  @Get('/validate/status')
+  async validate(@Body() validateUser: ValidateUser) {
+    const response = await this.userService.validate(validateUser).then(res => { return res });
+    const result = response[0] ? response[0] : null
+
+    return {
+      results: result !== null ? result : {},
+      status: result !== null ? 500 : 200
+    }
   }
 }
