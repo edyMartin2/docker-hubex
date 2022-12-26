@@ -12,4 +12,13 @@ export class CreateUserDto {
   @IsString()
   @IsDefined()
   password: string;
+
+  @IsString()
+  @IsDefined()
+  userName: string
+}
+
+export class ValidateUser {
+  @IsString()
+  userName: string
 }

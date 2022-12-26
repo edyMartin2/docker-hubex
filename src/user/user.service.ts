@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, ObjectId } from 'mongoose';
 
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto, ValidateUser } from './dto/create-user.dto';
 
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User, UserDocument } from './entities/user.entity';
@@ -13,10 +13,9 @@ export class UserService {
   constructor(
     @InjectModel(User.name) private readonly user: Model<UserDocument>,
     @InjectModel(Token.name) private readonly token: Model<TokenDocument>,
-  ) {}
-  async create(createUserDto: CreateUserDto): Promise<User> {
+  ) { }
+  async create(createUserDto: CreateUserDto): Promise<User | string> {
     const User = new this.user(createUserDto);
-
     return await User.save();
   }
 
@@ -24,10 +23,10 @@ export class UserService {
     return this.user.find({});
   }
 
-  async findOne(userName: string) {
-    let user = await this.user.find({ name: userName });
+  async findOne(data: string) {
+    var params = data.split('&')
+    let user = await this.user.find({ userName: params[0], password: params[1] });
     return user;
-    // return { message: 'hola', equiz: response };
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
@@ -41,5 +40,11 @@ export class UserService {
   async tokenize(createTokenDto: CreateTokenDto) {
     const Token = new this.token(createTokenDto);
     return await Token.save();
+  }
+
+  async validate(validateUser: ValidateUser) : Promise<User | any>{
+    
+    let user = await this.user.find({ userName: validateUser.userName });
+    return user;
   }
 }
