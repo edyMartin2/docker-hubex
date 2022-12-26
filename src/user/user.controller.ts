@@ -32,8 +32,9 @@ export class UserController {
     let users = await findOne.then((res) => {
       return res;
     });
+    console.log('userController:::', users)
     let tokenDto = {
-      userId: users[0]._id,
+      userId: users[0] ? users[0]._id : '',
       token: '',
     };
 
