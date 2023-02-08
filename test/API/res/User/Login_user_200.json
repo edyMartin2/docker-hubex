@@ -1,0 +1,15 @@
+{
+    "result": {
+      "user": {
+        "_id": "63ba2d80089c8d1d57541a30",
+        "name": "edgar valerio martinez",
+        "email": "edy@mail.com",
+        "password": "254123123",
+        "userName": "edyMartin",
+        "__v": 0,
+        "gitToken": "tokeeen"
+      },
+      "token": "ZWR5TWFydGluOjoyNTQxMjMxMjM6OjE2NzQ1OTQ5OTI1ODA="
+    },
+    "status": 200
+  }

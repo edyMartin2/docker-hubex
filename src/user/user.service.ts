@@ -29,8 +29,9 @@ export class UserService {
     return user;
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: ObjectId, updateUserDto: UpdateUserDto) {
+    console.log('id', id)
+    return await this.user.findByIdAndUpdate(id, updateUserDto)
   }
 
   remove(id: number) {

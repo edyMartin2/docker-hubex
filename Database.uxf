@@ -1,0 +1,23 @@
+<diagram program="umletino" version="15.0.0"><zoom_level>11</zoom_level><element><id>UMLClass</id><coordinates><x>36</x><y>396</y><w>231</w><h>132</h></coordinates><panel_attributes>User
+--
+-userId | UUID
+-name | string
+-email | string
+-password | string b64
+-userName | string
+-gitToken | string b64
+-userType | number</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>300</x><y>275</y><w>231</w><h>99</h></coordinates><panel_attributes>User - Repos
+--
+
+userId | UUID
+repoId | UUID
+roll | INT</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>146</x><y>308</y><w>176</w><h>99</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>139;10;10;10;10;70</additional_attributes></element><element><id>UMLClass</id><coordinates><x>630</x><y>275</y><w>231</w><h>132</h></coordinates><panel_attributes>Github 
+--
+repoId | UUID
+repoUrl | string 
+description | string 
+permision | INT</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>520</x><y>330</y><w>132</w><h>33</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>99;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>641</x><y>506</y><w>231</w><h>77</h></coordinates><panel_attributes>Permisos
+--
+type | int
+permisions | 8bits
+repoId | UUID</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>729</x><y>396</y><w>44</w><h>132</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>19;100;20;10</additional_attributes></element></diagram>

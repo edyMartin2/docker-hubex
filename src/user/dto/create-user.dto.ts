@@ -16,6 +16,10 @@ export class CreateUserDto {
   @IsString()
   @IsDefined()
   userName: string
+
+  @IsString()
+  @IsDefined()
+  gitToken: string
 }
 
 export class ValidateUser {

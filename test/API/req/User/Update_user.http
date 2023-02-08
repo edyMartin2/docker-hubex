@@ -1,0 +1,7 @@
+PATCH /user/63ba2d80089c8d1d57541a30 HTTP/1.1
+Host: localhost:3000
+Content-Type: application/json
+{
+    "name":"edgar valerio martinez",
+    "gitToken": "tokeeenone"
+}

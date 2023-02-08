@@ -55,9 +55,15 @@ export class UserController {
     };
   }
 
+  /**
+   * 
+   * @param id UUID de usuario
+   * @param updateUserDto objeto de usuario a actualizar
+   * @returns 
+   */
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
+  update(@Param('id') id: any, @Body() updateUserDto: UpdateUserDto) {
+    return this.userService.update(id, updateUserDto);
   }
 
   @Delete(':id')
