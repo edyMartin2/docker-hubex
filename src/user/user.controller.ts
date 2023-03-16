@@ -13,8 +13,11 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { CreateTokenDto } from './dto/create-token.dto';
 import axios from 'axios';
 import { encode } from 'src/crypt/cryptPassword';
+import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
+
 
 @Controller('user')
+@ApiTags("User")
 export class UserController {
   constructor(private readonly userService: UserService) { }
 
@@ -23,7 +26,10 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
+
   @Get()
+  @ApiOperation({ summary: 'Resumen de este endpoint' })
+  @ApiResponse({ status: 200, description: 'Descripción de la respuesta'})
   findAll() {
     return this.userService.findAll();
   }
