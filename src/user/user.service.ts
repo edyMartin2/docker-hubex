@@ -8,6 +8,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User, UserDocument } from './entities/user.entity';
 import { Token, TokenDocument } from './entities/token.entity';
 import { CreateTokenDto } from './dto/create-token.dto';
+import { SignIn } from './types/User';
 @Injectable()
 export class UserService {
   constructor(
@@ -23,9 +24,8 @@ export class UserService {
     return this.user.find({});
   }
 
-  async findOne(data: string) {
-    var params = data.split('&')
-    let user = await this.user.find({ userName: params[0], password: params[1] });
+  async findOne(data: SignIn) {
+    let user = await this.user.find({ userName: data.userName, password: data.password });
     return user;
   }
 

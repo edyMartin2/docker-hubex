@@ -12,9 +12,15 @@ import { createNewRepo } from 'src/Interfaces/CreateNewRepo';
 export class GitController {
     constructor(private readonly gitService:GitService){}
 
-    @Post()
-    creaet(@Body() createNewRepo: createNewRepo ){
-        this.gitService.create(createNewRepo)
-        return ""
+    @Post('/issues')
+    create(@Body() createNewRepo: createNewRepo ){
+        console.log("data:issues::git", createNewRepo)
+        return this.gitService.create(createNewRepo)
     }
+
+    @Get('/issues')
+    gets(){
+        return this.gitService.list()
+    }
+
 }

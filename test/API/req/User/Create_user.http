@@ -1,12 +1,11 @@
 POST /user HTTP/1.1
 Host: localhost:3000
 Content-Type: application/json
-Content-Length: 149
 
 {
-    "name": "Edgar Valerio Martinez",
-    "email":"edy@mail.com",
-    "password":"254123123",
+    "name": "Edgar Martinez",
+    "email":"edgar.m@gmail.com",
+    "password":"edymartin1",
     "userName":"edyMartin",
-    "gitToken":"123445"
+    "gitToken":"token_****"
 }

@@ -1,2 +1,8 @@
-GET /user/edyMartin&254123123 HTTP/1.1
+POST /user/sign HTTP/1.1
 Host: localhost:3000
+Content-Type: application/json
+
+{
+    "userName": "edyMartin",
+    "password":"edymartin1"
+}

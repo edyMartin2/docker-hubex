@@ -50,4 +50,8 @@ export class GitService {
     console.log('respuesta del guardado', createRelationService._id.toString())
     return this.repo.find({});
   }
+
+  async list(){
+    return this.repo.find({});
+  }
 }

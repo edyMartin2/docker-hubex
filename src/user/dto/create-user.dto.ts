@@ -1,30 +1,30 @@
 import { IsDefined, IsNumber, IsString } from 'class-validator';
-import { ApiProperty } from '@nestjs/swagger';
+// import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateUserDto {
   @IsString()
   @IsDefined()
-  @ApiProperty()
+  // @ApiProperty()
   name: string;
 
   @IsString()
   @IsDefined()
-  @ApiProperty()
+  // @ApiProperty()
   email: string;
 
   @IsString()
   @IsDefined()
-  @ApiProperty()
+  // @ApiProperty()
   password: string;
 
   @IsString()
   @IsDefined()
-  @ApiProperty()
+  // @ApiProperty()
   userName: string
 
   @IsString()
   @IsDefined()
-  @ApiProperty()
+  // @ApiProperty()
   gitToken: string
 }
 

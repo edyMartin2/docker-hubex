@@ -13,11 +13,12 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { CreateTokenDto } from './dto/create-token.dto';
 import axios from 'axios';
 import { encode } from 'src/crypt/cryptPassword';
-import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { SignIn } from './types/User';
+// import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
 
 @Controller('user')
-@ApiTags("User")
+// @ApiTags("User")
 export class UserController {
   constructor(private readonly userService: UserService) { }
 
@@ -28,20 +29,24 @@ export class UserController {
 
 
   @Get()
-  @ApiOperation({ summary: 'Resumen de este endpoint' })
-  @ApiResponse({ status: 200, description: 'Descripción de la respuesta'})
+  // @ApiOperation({ summary: 'Resumen de este endpoint' })
+  // @ApiResponse({ status: 200, description: 'Descripción de la respuesta'})
   findAll() {
     return this.userService.findAll();
   }
 
-  @Get(':userName')
-  async findOne(@Param('userName') userName: string) {
-    var findOne = this.userService.findOne(userName);
+  @Post('/sign')
+  async findOne(@Body() SingIn: SignIn) {
+    console.log('Body::request::findanuser::', SingIn)
+
+    var findOne = this.userService.findOne(SingIn);
+    
     let users = await findOne.then((res) => {
+      console.log('respuesta de busqueda:::', res)
       return res;
     });
 
-    let forTokenise = users[0] ? `${users[0].userName}::${users[0].password}::${Date.now()}` : '';
+    let forTokenise = users[0] ? encode(`${users[0].userName}::${new Date().toISOString()}`) : '';
   
 
     let tokenDto = {
@@ -54,8 +59,7 @@ export class UserController {
 
     return {
       result: {
-        user: users[0] ? users[0] : [],
-        token: tokens !== null ? encode(tokens.token) : {},
+        token: tokens !== null ? String(`token_${tokens.token}`): {},
       },
       status: tokens !== null ? 200 : 500
     };
