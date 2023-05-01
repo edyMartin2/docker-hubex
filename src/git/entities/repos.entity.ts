@@ -10,7 +10,7 @@ export class Repo {
   repoUrl: string;
 
   @Prop(String)
-  descriptionIssue: string;  
+  descriptionIssue: string;
 } 
 
 export const RepoSchema = SchemaFactory.createForClass(Repo);

@@ -3,9 +3,10 @@ Host: localhost:3000
 Content-Type: application/json
 
 {
-    "name": "Edgar Martinez",
-    "email":"edgar.m@gmail.com",
-    "password":"edymartin1",
-    "userName":"edyMartin",
-    "gitToken":"token_****"
+    "name": "Edgar Martinez2",
+    "email":"edgar.m2@gmail.com",
+    "password":"edymartin2",
+    "userName":"edyMartin2",
+    "gitToken":"token_1234",
+    "type": 2
 }
