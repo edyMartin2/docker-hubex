@@ -3,6 +3,6 @@ Host: localhost:3000
 Content-Type: application/json
 
 {
-    "userName": "edyMartin",
-    "password":"edymartin1"
+    "userName": "edyMartin2",
+    "password":"edymartin2"
 }

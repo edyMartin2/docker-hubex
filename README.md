@@ -1,1 +1,1 @@
-```docker-compose up  dev  mongodb mongo-express```
+```docker-compose up dev mongodb```

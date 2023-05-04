@@ -38,7 +38,9 @@ services:
       timeout: 10s
       retries: 3
     volumes:
-      - /usr/src/app
+      - dbdata:/data/db
     restart: unless-stopped
 networks:
   server-network:
+volumes:
+  dbdata:
